@@ -5,8 +5,9 @@ import Blog from "./components/Blog";
 import ErrorPage from "./components/ErrorPage";
 import About from "./components/About";
 import Signup from "./components/Signup/Signup";
-import Header from "./components/Header";
+
 import SignIn from "./components/SignIn/SignIn";
+import Home from "./components/Home/Home";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,12 +17,13 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Header></Header>,
+          element: <Home></Home>,
         },
         {
           path: "/home",
-          element: <Header></Header>,
+          element: <Home></Home>,
         },
+
         {
           path: "/blog",
           element: <Blog></Blog>,

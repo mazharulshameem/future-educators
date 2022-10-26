@@ -69,9 +69,12 @@ const Signup = () => {
             </div>
           </form>
           <div className="flex items-center pt-4 space-x-1">
-            <div className="flex-1 h-px sm:w-16 dark:bg-teal-700"></div>
-            <p className="px-3 text-sm dark:text-gray-400">Or SignUp With...</p>
-            <div className="flex-1 h-px sm:w-16 dark:bg-teal-700"></div>
+            <div className="inline-flex justify-center items-center w-full">
+              <hr className="my-2 w-64 h-px bg-teal-400 border-0 dark:bg-gray-700"></hr>
+              <span class=" left-1/2 px-3 font-medium text-gray-900 bg-gray-300 dark:text-white dark:bg-gray-900">
+                or
+              </span>
+            </div>
           </div>
           <div className="flex justify-center space-x-4">
             <button aria-label="Log in with Google" className="p-3 rounded-sm">

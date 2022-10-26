@@ -42,9 +42,9 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   isActive ? "bg-purple-700 text-white px-1" : undefined
                 }
-                to="/statistics"
-                aria-label="statistics"
-                title="statistics"
+                to="/courses"
+                aria-label="courses"
+                title="courses"
                 class="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
               >
                 Courses

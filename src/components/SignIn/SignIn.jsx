@@ -28,7 +28,7 @@ const SignIn = () => {
                   name="email"
                   id="email"
                   placeholder="Enter Email"
-                  className="w-full px-3 py-2 border rounded-md border-teal-300 focus:border-purple-600 bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 border rounded-md border-teal-300 focus:border-purple-600 bg-teal-100 text-gray-900"
                   data-temp-mail-org="0"
                 />
               </div>
@@ -43,7 +43,7 @@ const SignIn = () => {
                   name="password"
                   id="password"
                   placeholder="*******"
-                  className="w-full px-3 py-2 border rounded-md border-teal-300 bg-gray-200 focus:border-purple-600 text-gray-900"
+                  className="w-full px-3 py-2 border rounded-md border-teal-300 bg-teal-100 focus:border-purple-600 text-gray-900"
                 />
                 <div className="flex justify-end text-xs mt-1 mb-0 dark:text-gray-400">
                   <a href="#">Forgot Password?</a>
@@ -61,13 +61,15 @@ const SignIn = () => {
               </div>
             </div>
           </form>
-          <div className="flex items-center pt-4 space-x-1">
-            <div className="flex-1 h-px sm:w-16 dark:bg-teal-700"></div>
-            <p className="px-3 text-sm dark:text-gray-400">
-              Or Sign in With...
-            </p>
-            <div className="flex-1 h-px sm:w-16 dark:bg-teal-700"></div>
+          <div className="flex items-center pt-4 space-x-1"></div>
+
+          <div className="inline-flex justify-center items-center w-full">
+            <hr className="my-2 w-64 h-px bg-teal-400 border-0 dark:bg-gray-700"></hr>
+            <span class=" left-1/2 px-3 font-medium text-gray-900 bg-gray-300 dark:text-white dark:bg-gray-900">
+              or
+            </span>
           </div>
+
           <div className="flex justify-center space-x-4">
             <button aria-label="Log in with Google" className="p-3 rounded-sm">
               <svg
