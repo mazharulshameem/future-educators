@@ -34,10 +34,18 @@ function App() {
             },
           ],
         },
-
         {
           path: "/courses",
           element: <Courses></Courses>,
+          children: [
+            {
+              path: "/courses/:id",
+              loader: async ({ params }) => {
+                return fetch(`http://localhost:5000/courses/${params.id}`);
+              },
+              element: <CourseAll></CourseAll>,
+            },
+          ],
         },
 
         {

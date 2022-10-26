@@ -11,11 +11,15 @@ const LeftBar = () => {
   }, []);
   return (
     <div className="">
-      <h4>Categories: {categories.length}</h4>
-      <div className="">
+      <div className=" border-red-100">
         {categories.map((category) => (
           <p key={category.id}>
-            <Link to={`/home/courses/${category.id}`}>{category.name}</Link>
+            <Link
+              className="block border border-purple-900 bg-teal-400 lg:text-xl md:text-sm text-white hover:bg-black py-2 px-2 "
+              to={`/home/courses/${category.id}`}
+            >
+              {category.name}
+            </Link>
           </p>
         ))}
       </div>
