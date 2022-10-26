@@ -1,7 +1,44 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import app from "../../Firebase/firebase.init";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  sendEmailVerification,
+} from "firebase/auth";
+import { toast } from "react-toastify";
+
+const auth = getAuth(app);
 
 const Signup = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const name = event.target.name.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        console.log(result.user);
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        }).then(() => {
+          toast.success("Name updated successfully");
+        });
+        sendEmailVerification(auth.currentUser)
+          .then(() => {
+            toast.success("Email verification updated successfully");
+          })
+          .catch((error) => {
+            toast.error("please try again");
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="bg-purple-600">
       <div className="flex justify-center items-center pt-4 pb-12">
@@ -11,6 +48,7 @@ const Signup = () => {
             <p className="text-sm text-gray-400">Create a new account</p>
           </div>
           <form
+            onSubmit={handleSubmit}
             noValidate=""
             action=""
             className="space-y-12 ng-untouched ng-pristine ng-valid"
@@ -27,6 +65,7 @@ const Signup = () => {
                   placeholder="Enter Name"
                   className="w-full px-3 py-2 border rounded-md border-teal-300 focus:border-purple-600 bg-gray-200 text-gray-900"
                   data-temp-mail-org="0"
+                  required
                 />
               </div>
               <div>
@@ -40,6 +79,7 @@ const Signup = () => {
                   placeholder="Enter Email"
                   className="w-full px-3 py-2 border rounded-md border-teal-300 focus:border-purple-600 bg-gray-200 text-gray-900"
                   data-temp-mail-org="0"
+                  required
                 />
               </div>
               <div>
@@ -53,6 +93,7 @@ const Signup = () => {
                   name="password"
                   id="password"
                   placeholder="*******"
+                  required
                   className="w-full px-3 py-2 border rounded-md border-teal-300 bg-gray-200 focus:border-purple-600 text-gray-900"
                 />
               </div>
