@@ -8,6 +8,8 @@ import Signup from "./components/Signup/Signup";
 
 import SignIn from "./components/SignIn/SignIn";
 import Home from "./components/Home/Home";
+import CourseAll from "./components/CourseAll/CourseAll";
+import Courses from "./components/Courses/Courses";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,6 +24,20 @@ function App() {
         {
           path: "/home",
           element: <Home></Home>,
+          children: [
+            {
+              path: "/home/courses/:id",
+              loader: async ({ params }) => {
+                return fetch(`http://localhost:5000/courses/${params.id}`);
+              },
+              element: <CourseAll></CourseAll>,
+            },
+          ],
+        },
+
+        {
+          path: "/courses",
+          element: <Courses></Courses>,
         },
 
         {
