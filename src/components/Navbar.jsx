@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+
 import logo from "./../img/about.png";
 
 const Navbar = () => {
@@ -63,6 +64,7 @@ const Navbar = () => {
                 Blog
               </NavLink>
             </li>
+
             <li>
               <NavLink
                 className={({ isActive }) =>

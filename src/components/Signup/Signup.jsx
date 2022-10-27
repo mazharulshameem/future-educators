@@ -1,42 +1,49 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import app from "../../Firebase/firebase.init";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  sendEmailVerification,
-} from "firebase/auth";
 import { toast } from "react-toastify";
-
-const auth = getAuth(app);
+import { AuthContext } from "../../Context/UserContext";
 
 const Signup = () => {
+  const { createUser, updateName, verifyEmail, signInWithGoogle } =
+    useContext(AuthContext);
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    createUserWithEmailAndPassword(auth, email, password)
+    console.log(name, email, password);
+    if (password.length < 6) {
+      toast.warning("Password must be at least 6 characters");
+      return;
+    }
+
+    createUser(email, password)
       .then((result) => {
         console.log(result.user);
-        updateProfile(auth.currentUser, {
-          displayName: name,
-        }).then(() => {
-          toast.success("Name updated successfully");
-        });
-        sendEmailVerification(auth.currentUser)
+        updateName(name)
           .then(() => {
-            toast.success("Email verification updated successfully");
+            toast.success("Name Updated");
+
+            //3. Email verification
+            verifyEmail()
+              .then(() => {
+                toast.success("Please check your email for verification link");
+              })
+              .catch((error) => {
+                toast.error(error.message);
+              });
           })
           .catch((error) => {
-            toast.error("please try again");
+            toast.error(error.message);
           });
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.log(error));
+  };
+  const handleGoogleSignIn = () => {
+    signInWithGoogle().then((result) => {
+      console.log(result.user);
+    });
   };
 
   return (
@@ -118,7 +125,11 @@ const Signup = () => {
             </div>
           </div>
           <div className="flex justify-center space-x-4">
-            <button aria-label="Log in with Google" className="p-3 rounded-sm">
+            <button
+              onClick={handleGoogleSignIn}
+              aria-label="Log in with Google"
+              className="p-3 rounded-sm"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 32 32"
