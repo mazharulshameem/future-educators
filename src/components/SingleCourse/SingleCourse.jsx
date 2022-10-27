@@ -1,5 +1,6 @@
 import React from "react";
-
+import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const SingleCourse = ({ course }) => {
   return (
     <div className="">
@@ -18,7 +19,13 @@ const SingleCourse = ({ course }) => {
             >
               {course.instructor}
             </a>
-            <span className="text-xs dark:text-gray-400"> {course.rating}</span>
+            <div className="flex">
+              <FaStar className=""></FaStar>
+              {""}
+              <span className="text-xs dark:text-gray-600">
+                {course.rating}
+              </span>
+            </div>
           </div>
         </div>
         <div>
@@ -60,9 +67,12 @@ const SingleCourse = ({ course }) => {
             </button>
           </div>
           <div>
-            <button className=" bg-teal-500 hover:bg-purple-600  shadow-lg text-white py-2 px-3">
+            <Link
+              to={`/home/course/${course.id}`}
+              className="block  bg-teal-500 hover:bg-purple-600  shadow-lg text-white py-2 px-3"
+            >
               See Details
-            </button>
+            </Link>
           </div>
         </div>
       </div>

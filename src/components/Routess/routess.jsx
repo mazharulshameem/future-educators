@@ -3,6 +3,7 @@ import About from "../About";
 import Blog from "../Blog";
 import CourseAll from "../CourseAll/CourseAll";
 import Courses from "../Courses/Courses";
+import SelectedCourse from "../Courses/SelectedCourse";
 import ErrorPage from "../ErrorPage";
 import Home from "../Home/Home";
 import Root from "../Root";
@@ -29,6 +30,13 @@ const router = createBrowserRouter([
               return fetch(`http://localhost:5000/courses/${params.id}`);
             },
             element: <CourseAll></CourseAll>,
+          },
+          {
+            path: "/home/course/:id",
+            loader: async ({ params }) => {
+              return fetch(`http://localhost:5000/course/${params.id}`);
+            },
+            element: <SelectedCourse />,
           },
         ],
       },
