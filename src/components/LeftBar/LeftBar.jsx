@@ -11,7 +11,7 @@ const LeftBar = () => {
   }, []);
   return (
     <div className="">
-      <div className=" border-red-100">
+      <div className="">
         {categories.map((category) => (
           <p key={category.id}>
             <Link
