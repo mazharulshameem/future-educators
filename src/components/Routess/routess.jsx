@@ -27,14 +27,18 @@ const router = createBrowserRouter([
           {
             path: "/home/courses/:id",
             loader: async ({ params }) => {
-              return fetch(`http://localhost:5000/courses/${params.id}`);
+              return fetch(
+                `https://server-educators.vercel.app/courses/${params.id}`
+              );
             },
             element: <CourseAll></CourseAll>,
           },
           {
             path: "/home/course/:id",
             loader: async ({ params }) => {
-              return fetch(`http://localhost:5000/course/${params.id}`);
+              return fetch(
+                `https://server-educators.vercel.app/course/${params.id}`
+              );
             },
             element: (
               <PrivateRoute>
@@ -52,7 +56,9 @@ const router = createBrowserRouter([
           {
             path: "/courses/:id",
             loader: async ({ params }) => {
-              return fetch(`http://localhost:5000/courses/${params.id}`);
+              return fetch(
+                `https://server-educators.vercel.app/courses/${params.id}`
+              );
             },
             element: <CourseAll></CourseAll>,
           },

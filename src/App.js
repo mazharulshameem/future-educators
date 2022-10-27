@@ -28,7 +28,7 @@ function App() {
   //         {
   //           path: "/home/courses/:id",
   //           loader: async ({ params }) => {
-  //             return fetch(`http://localhost:5000/courses/${params.id}`);
+  //             return fetch(`https://server-educators.vercel.app/courses/${params.id}`);
   //           },
   //           element: <CourseAll></CourseAll>,
   //         },
@@ -41,7 +41,7 @@ function App() {
   //         {
   //           path: "/courses/:id",
   //           loader: async ({ params }) => {
-  //             return fetch(`http://localhost:5000/courses/${params.id}`);
+  //             return fetch(`https://server-educators.vercel.app/courses/${params.id}`);
   //           },
   //           element: <CourseAll></CourseAll>,
   //         },
