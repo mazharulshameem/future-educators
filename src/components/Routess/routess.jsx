@@ -8,6 +8,7 @@ import Home from "../Home/Home";
 import Root from "../Root";
 import SignIn from "../SignIn/SignIn";
 import Signup from "../Signup/Signup";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/courses",
-        element: <Courses></Courses>,
+        element: <Courses />,
+
         children: [
           {
             path: "/courses/:id",

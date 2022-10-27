@@ -1,7 +1,32 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../Context/UserContext";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const { Login, resetPassword, signInWithGoogle } = useContext(AuthContext);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    Login(email, password)
+      .then((result) => {
+        toast.success("Login Success!");
+        navigate("/home");
+        console.log(result.user);
+      })
+      .catch((error) => toast.error(error.message));
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle().then((result) => {
+      console.log(result.user);
+    });
+  };
   return (
     <div className="bg-purple-600">
       <div className="flex justify-center items-center pt-4 pb-12">
@@ -14,6 +39,7 @@ const SignIn = () => {
             </p>
           </div>
           <form
+            onSubmit={handleSubmit}
             noValidate=""
             action=""
             className="space-y-12 ng-untouched ng-pristine ng-valid"
@@ -45,9 +71,7 @@ const SignIn = () => {
                   placeholder="*******"
                   className="w-full px-3 py-2 border rounded-md border-teal-300 bg-teal-100 focus:border-purple-600 text-gray-900"
                 />
-                <div className="flex justify-end text-xs mt-1 mb-0 dark:text-gray-400">
-                  <a href="#">Forgot Password?</a>
-                </div>
+                <div className="flex justify-end text-xs mt-1 mb-0 dark:text-gray-400"></div>
               </div>
             </div>
             <div className="space-y-2">
@@ -71,7 +95,11 @@ const SignIn = () => {
           </div>
 
           <div className="flex justify-center space-x-4">
-            <button aria-label="Log in with Google" className="p-3 rounded-sm">
+            <button
+              onClick={handleGoogleSignIn}
+              aria-label="Log in with Google"
+              className="p-3 rounded-sm"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 32 32"
@@ -102,5 +130,4 @@ const SignIn = () => {
     </div>
   );
 };
-
 export default SignIn;
