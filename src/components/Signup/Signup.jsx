@@ -23,7 +23,7 @@ const Signup = () => {
         console.log(result.user);
         updateName(name)
           .then(() => {
-            toast.success("Name Updated");
+            toast.success("Account Created successfully");
 
             //3. Email verification
             verifyEmail()

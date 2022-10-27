@@ -1,9 +1,18 @@
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../Context/UserContext";
 
 import logo from "./../img/about.png";
 
 const Navbar = () => {
+  const { user, logout } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logout()
+      .then(toast.warning("User logged out"))
+      .catch((error) => console.log(error));
+  };
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div class="bg-teal-400 sticky top-0">
@@ -78,26 +87,33 @@ const Navbar = () => {
                 About us
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/signin"
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Sign In
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/signup"
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Sign Up
-              </NavLink>
-            </li>
+
+            {user?.email ? (
+              <>
+                <li>
+                  <NavLink
+                    onClick={handleLogOut}
+                    to=""
+                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                    aria-label="Sign up"
+                    title="Sign out"
+                  >
+                    Sign Out
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <li>
+                <NavLink
+                  to="/signup"
+                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                  aria-label="Sign up"
+                  title="Sign up"
+                >
+                  Sign Up
+                </NavLink>
+              </li>
+            )}
           </ul>
           <div class="lg:hidden">
             <button
