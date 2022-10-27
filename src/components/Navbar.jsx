@@ -95,7 +95,7 @@ const Navbar = () => {
                     onClick={handleLogOut}
                     to=""
                     className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                    aria-label="Sign up"
+                    aria-label="Sign out"
                     title="Sign out"
                   >
                     Sign Out
@@ -144,8 +144,8 @@ const Navbar = () => {
                     <div>
                       <NavLink
                         to="/"
-                        aria-label="Mega Quiz"
-                        title="Mega Quiz"
+                        aria-label="Future Educators"
+                        title="Future Educators"
                         class="inline-flex items-center"
                       >
                         <img
@@ -199,9 +199,9 @@ const Navbar = () => {
                               ? "bg-purple-700 text-white px-1"
                               : undefined
                           }
-                          to="/statistics"
-                          aria-label="statistics"
-                          title="statistics"
+                          to="/courses"
+                          aria-label="courses"
+                          title="courses"
                           class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                           Courses
@@ -237,26 +237,32 @@ const Navbar = () => {
                           About us
                         </NavLink>
                       </li>
-                      <li>
-                        <NavLink
-                          to="/signin"
-                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                          aria-label="Sign up"
-                          title="Sign up"
-                        >
-                          Sign In
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          to="/signup"
-                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                          aria-label="Sign up"
-                          title="Sign up"
-                        >
-                          Sign Up
-                        </NavLink>
-                      </li>
+                      {user?.email ? (
+                        <>
+                          <li>
+                            <NavLink
+                              onClick={handleLogOut}
+                              to="/"
+                              className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                              aria-label="Sign up"
+                              title="Sign Out"
+                            >
+                              Sign Out
+                            </NavLink>
+                          </li>
+                        </>
+                      ) : (
+                        <li>
+                          <NavLink
+                            to="/signup"
+                            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                            aria-label="Sign up"
+                            title="Sign up"
+                          >
+                            Sign Up
+                          </NavLink>
+                        </li>
+                      )}
                     </ul>
                   </nav>
                 </div>
