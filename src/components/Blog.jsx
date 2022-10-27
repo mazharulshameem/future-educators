@@ -11,9 +11,17 @@ const Blog = () => {
           </h2>
           <div className="flex flex-col divide-y sm:px-12 lg:px-16 xl:px-32 divide-teal-700">
             <details open="">
-              <summary className="py-2 outline-none text-purple-700 cursor-pointer focus:underline"></summary>
+              <summary className="py-2 outline-none text-purple-700 cursor-pointer focus:underline">
+                01. What is Cors ?
+              </summary>
               <div className="px-4 pb-4">
-                <p></p>
+                <p>
+                  Cross-origin resource sharing is a mechanism that allows
+                  restricted resources on a web page to be requested from
+                  another domain outside the domain from which the first
+                  resource was served. A web page may freely embed cross-origin
+                  images, stylesheets, scripts, iframes, and videos.
+                </p>
               </div>
             </details>
             <details>
